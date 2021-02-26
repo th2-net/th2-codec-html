@@ -16,7 +16,6 @@ package com.exactpro.th2.codec.html.processor;
 import com.exactpro.sf.common.util.Pair;
 import com.exactpro.th2.codec.html.util.HtmlUtils;
 import com.exactpro.th2.common.grpc.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -46,7 +45,7 @@ public class FixProcessor {
     }
 
     public Message process (RawMessage rawMessage) throws Exception {
-        String body = new String(rawMessage.getBody().toByteArray());
+        String body = new String(Base64.getDecoder().decode(rawMessage.getBody().toByteArray()));
         Document document = Jsoup.parse(body);
 
         Element table = HtmlUtils.traverseSubtree(document, tableChecker);
