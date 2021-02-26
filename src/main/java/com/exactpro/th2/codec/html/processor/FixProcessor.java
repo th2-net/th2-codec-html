@@ -45,7 +45,7 @@ public class FixProcessor {
     }
 
     public Message process (RawMessage rawMessage) throws Exception {
-        String body = new String(Base64.getDecoder().decode(rawMessage.getBody().toByteArray()));
+        String body = new String(rawMessage.getBody().toByteArray());
         Document document = Jsoup.parse(body);
 
         Element table = HtmlUtils.traverseSubtree(document, tableChecker);
