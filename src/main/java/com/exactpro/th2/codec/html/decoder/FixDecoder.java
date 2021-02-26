@@ -20,6 +20,7 @@ public class FixDecoder {
             try {
                 if (msg.hasMessage()) {
                     messageGroupBuilder.addMessages(AnyMessage.newBuilder().setMessage(msg.getMessage()).build());
+                    continue;
                 }
                 Message output = fixProcessor.process(msg.getRawMessage());
 
