@@ -1,12 +1,8 @@
 package com.exactpro.th2.codec.html.decoder;
 
-import com.exactpro.sf.common.util.Pair;
 import com.exactpro.th2.codec.html.processor.FixProcessor;
 import com.exactpro.th2.common.grpc.*;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Slf4j
 public class FixDecoder {
