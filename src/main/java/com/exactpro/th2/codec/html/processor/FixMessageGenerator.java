@@ -18,11 +18,12 @@ public class FixMessageGenerator {
         newly generated subMessage
     */
 
-    public static Message generateMessage (FixHtmlProcessorConfiguration configuration, String messageType, RawMessageMetadata rawMessageMetadata, Message subMessage) {
+    public static Message generateMessage (FixHtmlProcessorConfiguration configuration, int subsequenceNumber, String messageType, RawMessageMetadata rawMessageMetadata, Message subMessage) {
         Message.Builder builder = Message.newBuilder();
 
         MessageMetadata metadata = MessageMetadata.newBuilder()
-                .setId(rawMessageMetadata.getId())
+                .setId(MessageID.newBuilder(rawMessageMetadata.getId())
+                        .addSubsequence(subsequenceNumber).build())
                 .setMessageType(messageType)
                 .setTimestamp(rawMessageMetadata.getTimestamp())
                 .build();

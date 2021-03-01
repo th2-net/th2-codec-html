@@ -44,7 +44,7 @@ public class FixProcessor {
 
     }
 
-    public Message process (RawMessage rawMessage) throws Exception {
+    public Message process (RawMessage rawMessage, Integer subsequenceNumber) throws Exception {
         String body = new String(rawMessage.getBody().toByteArray());
         Document document = Jsoup.parse(body);
 
@@ -71,7 +71,7 @@ public class FixProcessor {
             throw new Exception("Processor could not process the hierarchy");
         }
 
-        return FixMessageGenerator.generateMessage (configuration, messageType, rawMessage.getMetadata(), subMessage);
+        return FixMessageGenerator.generateMessage (configuration, subsequenceNumber, messageType, rawMessage.getMetadata(), subMessage);
     }
 
     /*

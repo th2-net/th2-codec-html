@@ -16,13 +16,14 @@ public class FixDecoder {
     public MessageGroup decode (MessageGroup group) {
         MessageGroup.Builder messageGroupBuilder = MessageGroup.newBuilder();
 
+        Integer subsequenceNumber = 1;
         for (var msg : group.getMessagesList()) {
             try {
                 if (msg.hasMessage()) {
                     messageGroupBuilder.addMessages(AnyMessage.newBuilder().setMessage(msg.getMessage()).build());
                     continue;
                 }
-                Message output = fixProcessor.process(msg.getRawMessage());
+                Message output = fixProcessor.process(msg.getRawMessage(), subsequenceNumber);
 
                 if (output == null) {
                     throw new Exception("Could not process RawMessage");
