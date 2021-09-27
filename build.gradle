@@ -21,7 +21,6 @@ version = release_version
 
 
 repositories {
-    mavenCentral()
     maven {
         name 'Sonatype_snapshots'
         url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
@@ -29,6 +28,9 @@ repositories {
     maven {
         name 'Sonatype_releases'
         url 'https://s01.oss.sonatype.org/content/repositories/releases/'
+    }
+    flatDir {
+        dirs "lib"
     }
     mavenCentral()
 }
