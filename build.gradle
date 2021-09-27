@@ -12,7 +12,7 @@
  */
 
 plugins {
-    id 'java'
+    id 'java-library'
     id 'application'
 }
 
@@ -21,10 +21,13 @@ version = release_version
 
 
 repositories {
-    jcenter()
     maven {
-        name 'Bintray'
-        url 'https://dl.bintray.com/exactpro/th2'
+        name 'Sonatype_snapshots'
+        url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'
+    }
+    maven {
+        name 'Sonatype_releases'
+        url 'https://s01.oss.sonatype.org/content/repositories/releases/'
     }
     flatDir {
         dirs "lib"
@@ -33,12 +36,14 @@ repositories {
 }
 
 dependencies {
-    compile 'com.exactpro.th2:common:3.0.2'
-    compile "com.exactpro.sf:sailfish-common:3.2"
+    api platform('com.exactpro.th2:bom:3.0.0')
+
+    compile 'com.exactpro.th2:common:3.13.4'
+    compile "com.exactpro.sf:sailfish-common:3.2.1684"
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'org.jsoup:jsoup:1.13.1'
 
-    compile "org.slf4j:slf4j-log4j12:1.7.21"
+    compile "org.slf4j:slf4j-log4j12"
 
     compileOnly "org.projectlombok:lombok:1.18.12"
     annotationProcessor "org.projectlombok:lombok:1.18.12"
